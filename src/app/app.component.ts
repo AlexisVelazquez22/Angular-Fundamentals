@@ -11,17 +11,25 @@ import { Passenger } from './passenger.interface';
 
       <ul>
         <li *ngFor="let passenger of passengers; let i = index">
-          {{ i }}: {{ passenger.fullname }} - {{ passenger.id }}
+          <span
+            class="status"
+            [class.checked-in]="passenger.checkedIn"></span>
+          {{ i }}: {{ passenger.fullname }} | Passenger Id: {{ passenger.id }}
         </li>
       </ul>
 
-      <!-- Same as above but longer version -->
+      <!-- ngClass approach (add multiple classes to an element)-->
+      <h3>Airline Passengers</h3>
       <ul>
-        <ng-template ngFor let-passenger let-i="index" [ngForOf]="passengers">
-          <li >
-            {{ i }}: {{ passenger.fullname }}
-          </li>
-        </ng-template>
+        <li *ngFor="let passenger of passengers; let i = index">
+          <span
+            class="status"
+            [ngClass]="{
+                         'checked-in': passenger.checkedIn,
+                         'checked-out': !passenger.checkedIn
+                        }"></span>
+          {{ i }}: {{ passenger.fullname }} | Passenger Id: {{ passenger.id }}
+        </li>
       </ul>
 
     </div>
