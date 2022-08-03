@@ -5,22 +5,37 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
   template: `
     <div class="app">
+      <!-- event binding -->
+      <button (click)="handleClick()">
+        Rename
+      </button>
 
-      <h1 [innerHTML]="title"></h1> <!-- one-way data flow syntax -->
-      <h1> {{ title }} </h1>
-      <input type="text" [value]="name"> <!-- To bind properties use the bracket [] syntax -->
+      <input
+      type="text"
+      [value]="name"
+      (input)="handleInput($event)"
+      (blur)="handleBlur($event)">
+
       <div> {{ name }} </div>
-      <img [src]="logoUrl">
 
     </div>
   `
 })
 export class AppComponent {
-  title: string;
-  logoUrl: string = './assets/img/logo.jpg';
+
   name: string = 'Alex';
 
-  constructor(){
-    this.title = 'Angular Fundamentals';
+  handleClick() {
+    this.name = 'Succesfully renamed!';
   }
+
+  handleInput(event: any) {
+    this.name = event.target.value;
+  }
+
+  handleBlur(event: any) {  // event "blur" triggers when lost focus
+
+    this.name = 'Lost focus';
+  }
+
 }
