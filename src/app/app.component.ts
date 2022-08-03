@@ -6,26 +6,18 @@ import { Component } from '@angular/core';
   template: `
     <div class="app">
 
-      {{ title + '!' }}
-      <div>
-        {{ numberOne }} +
-        {{ numberTwo }} =
-      </div>
-      <div>
-        {{ numberOne + numberTwo }}
-      </div>
-      <div>
-        {{ isHappy ? ':)': ':(' }}
-      </div>
+      <h1 [innerHTML]="title"></h1> <!-- one-way data flow syntax -->
+      <h1> {{ title }} </h1>
+      <input type="text" [value]="name"> <!-- To bind properties use the bracket [] syntax -->
+      <img [src]="logoUrl">
 
     </div>
   `
 })
 export class AppComponent {
   title: string;
-  numberOne: number = 1;
-  numberTwo: number = 2;
-  isHappy: boolean = false;
+  logoUrl: string = './assets/img/logo.jpg';
+  name: string = 'Alex';
 
   constructor(){
     this.title = 'Angular Fundamentals';
