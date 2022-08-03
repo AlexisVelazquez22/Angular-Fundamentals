@@ -13,22 +13,20 @@ import { Passenger } from './passenger.interface';
         <li *ngFor="let passenger of passengers; let i = index">
           <span
             class="status"
-            [class.checked-in]="passenger.checkedIn"></span>
+            [style.backgroundColor]=" passenger.checkedIn ? '#2ecc71' : 'red' "></span>
           {{ i }}: {{ passenger.fullname }} | Passenger Id: {{ passenger.id }}
         </li>
       </ul>
 
-      <!-- ngClass approach (add multiple classes to an element)-->
+      <!-- ngStyle approach -->
       <h3>Airline Passengers</h3>
+
       <ul>
         <li *ngFor="let passenger of passengers; let i = index">
           <span
             class="status"
-            [ngClass]="{
-                         'checked-in': passenger.checkedIn,
-                         'checked-out': !passenger.checkedIn
-                        }"></span>
-          {{ i }}: {{ passenger.fullname }} | Passenger Id: {{ passenger.id }}
+            [ngStyle]="{backgroundColor: passenger.checkedIn ? '#2ecc71' : 'red'}"></span>
+          {{ i }}: {{ passenger.fullname }}
         </li>
       </ul>
 
