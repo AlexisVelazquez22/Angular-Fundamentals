@@ -6,35 +6,39 @@ import { Component } from '@angular/core';
   template: `
     <div class="app">
 
-      <input
-        type="text"
-        [value]="name"
-        (input)="handleChange($event)">
-
-      <div *ngIf="name.length">
-        Searching... {{ name }}
-      </div>
-
-      <div *ngIf="name.length > 2">
-        Searching for longer... {{ name }}
-      </div>
-
-      <!-- Long version of ngIf using ng-template-->
-      <ng-template [ngIf]="name.length > 2">
-        <div>
-          Searching for longer... {{ name }}
-        </div>
-      </ng-template>
+      <h3>Airline Passengers</h3>
 
     </div>
   `
 })
 export class AppComponent {
 
-  name: string = '';
-
-  handleChange(event: any) {
-    this.name = event.target.value;
-  }
+  passengers: any = [
+    {
+      id: 1,
+      fullname: 'Stephen',
+      checkedIn: true
+    },
+    {
+      id: 2,
+      fullname: 'Rose',
+      checkedIn: false
+    },
+    {
+      id: 3,
+      fullname: 'James',
+      checkedIn: true
+    },
+    {
+      id: 4,
+      fullname: 'Louise',
+      checkedIn: true
+    },
+    {
+      id: 5,
+      fullname: 'Tina',
+      checkedIn: false
+    }
+  ];
 
 }
