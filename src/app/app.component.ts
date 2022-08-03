@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Passenger } from './passenger.interface';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +9,27 @@ import { Component } from '@angular/core';
 
       <h3>Airline Passengers</h3>
 
+      <ul>
+        <li *ngFor="let passenger of passengers; let i = index">
+          {{ i }}: {{ passenger.fullname }} - {{ passenger.id }}
+        </li>
+      </ul>
+
+      <!-- Same as above but longer version -->
+      <ul>
+        <ng-template ngFor let-passenger let-i="index" [ngForOf]="passengers">
+          <li >
+            {{ i }}: {{ passenger.fullname }}
+          </li>
+        </ng-template>
+      </ul>
+
     </div>
   `
 })
 export class AppComponent {
 
-  passengers: any = [
+  passengers: Passenger[] = [
     {
       id: 1,
       fullname: 'Stephen',
