@@ -1,5 +1,5 @@
 export interface Passenger {
   id: number;
   fullname: string;
-  checkedIn: boolean;
+  checkedIn: boolean; //not bool
 }
