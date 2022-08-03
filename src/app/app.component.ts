@@ -15,7 +15,7 @@ import { Passenger } from './passenger.interface';
         </li>
       </ul>
 
-      <!-- Same as above but longer version -->
+      <!-- Same as above but longer version (template driven approach) -->
       <ul>
         <ng-template ngFor let-passenger let-i="index" [ngForOf]="passengers">
           <li >
