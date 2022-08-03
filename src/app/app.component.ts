@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
       <h1 [innerHTML]="title"></h1> <!-- one-way data flow syntax -->
       <h1> {{ title }} </h1>
       <input type="text" [value]="name"> <!-- To bind properties use the bracket [] syntax -->
+      <div> {{ name }} </div>
       <img [src]="logoUrl">
 
     </div>
