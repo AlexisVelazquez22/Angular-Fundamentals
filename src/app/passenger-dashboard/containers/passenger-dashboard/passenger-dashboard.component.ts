@@ -12,7 +12,9 @@ import { Passenger } from 'src/app/passenger-dashboard/models/passenger.interfac
 
       <passenger-detail
         *ngFor="let passenger of passengers;"
-        [detail]="passenger"> <!-- sends the data (passenger) to the dumb component -->
+        [detail]="passenger"
+        (remove)="handleRemove($event)"
+        (edit)="handleEdit($event)">
       </passenger-detail>
 
     </div>
@@ -61,7 +63,15 @@ export class PassengerDashboardComponent implements OnInit {
           checkInDate: null,
           children: null
         }
-      ]
+      ];
+  }
+
+  handleRemove(event: any) {
+    console.log(event);
+  }
+
+  handleEdit(event: any) {
+
   }
 
 }
