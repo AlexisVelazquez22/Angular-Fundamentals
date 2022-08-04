@@ -6,6 +6,9 @@ import { Passenger } from 'src/app/passenger-dashboard/models/passenger.interfac
   styleUrls: ['passenger-dashboard.component.scss'],
   template: `
     <div>
+      <passenger-count></passenger-count>
+      <passenger-detail></passenger-detail>
+
       <h3>Airline Passengers</h3>
 
       <ul>
