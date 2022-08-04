@@ -1,8 +1,17 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+// basic modules (default)
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { AppRoutingModule } from "./app-routing.module";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+// angular modules
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+
+// custom modules
+import { PassengerDashboardModule } from "./passenger-dashboard/passenger-dashboard.module";
+
+// components
+import { AppComponent } from "./app.component";
 
 @NgModule({
   declarations: [
@@ -10,9 +19,13 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    CommonModule,
+    AppRoutingModule,
+    FormsModule,
+    PassengerDashboardModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ],
+
 })
-export class AppModule { }
+export class AppModule {}
