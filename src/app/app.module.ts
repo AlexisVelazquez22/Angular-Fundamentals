@@ -1,11 +1,14 @@
 // basic modules (default)
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { CommonModule } from "@angular/common";
 import { AppRoutingModule } from "./app-routing.module";
 
-// modules
+// angular modules
+import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+
+// custom modules
+import { PassengerDashboardModule } from "./passenger-dashboard/passenger-dashboard.module";
 
 // components
 import { AppComponent } from "./app.component";
@@ -18,7 +21,8 @@ import { AppComponent } from "./app.component";
     BrowserModule,
     CommonModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    PassengerDashboardModule
   ],
   providers: [],
   bootstrap: [ AppComponent ],
