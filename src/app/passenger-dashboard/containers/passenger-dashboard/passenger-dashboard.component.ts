@@ -10,6 +10,10 @@ import { Passenger } from 'src/app/passenger-dashboard/models/passenger.interfac
         [items]="passengers"> <!-- sends the data (passenger[]) to the dumb component -->
       </passenger-count>
 
+      <div *ngFor="let passenger of passengers;">
+        {{ passenger.fullname }}
+      </div>
+
       <passenger-detail
         *ngFor="let passenger of passengers;"
         [detail]="passenger"
