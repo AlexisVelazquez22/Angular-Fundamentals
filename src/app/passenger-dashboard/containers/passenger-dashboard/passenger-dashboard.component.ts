@@ -10,30 +10,11 @@ import { Passenger } from 'src/app/passenger-dashboard/models/passenger.interfac
         [items]="passengers"> <!-- sends the data (passenger[]) to the dumb component -->
       </passenger-count>
 
-      <passenger-detail>
-
+      <passenger-detail
+        *ngFor="let passenger of passengers;"
+        [detail]="passenger"> <!-- sends the data (passenger) to the dumb component -->
       </passenger-detail>
 
-      <h3>Airline Passengers</h3>
-      <ul>
-        <li *ngFor="let passenger of passengers; let i = index">
-          <span
-            class="status"
-            [style.backgroundColor]=" passenger.checkedIn ? '#2ecc71' : 'red' "></span>
-          {{ i }}: {{ passenger.fullname }}
-          <p>{{ passenger | json }}</p>
-          <div class="date">
-            Check-in date:
-              {{ passenger.checkedIn === true
-                ? (passenger.checkInDate | date: 'fullDate' | uppercase)
-                : 'Not checked yet'
-              }}
-          </div>
-          <div class="children">
-              Children: {{ passenger.children?.length || 0 }}
-          </div>
-        </li>
-      </ul>
     </div>
   `
 })

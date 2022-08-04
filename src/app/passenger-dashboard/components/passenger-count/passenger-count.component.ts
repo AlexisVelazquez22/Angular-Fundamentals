@@ -6,13 +6,14 @@ import { Passenger } from "../../models/passenger.interface";
   styleUrls: ['passenger-count.component.scss'],
   template: `
     <div>
-      <h3>Airline Passengers!!!</h3>
+      <h3>Airline Passengers</h3>
       <div>
         Total passengers: {{ items.length }}
       </div>
       <div>
         Total checked in: {{ checkedInCount() }}/{{ items.length }}
       </div>
+      <br>
     </div>
   `
 })
