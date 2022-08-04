@@ -36,7 +36,7 @@ import { Passenger } from "../../models/passenger.interface";
           {{ editing ? 'Done' : 'Edit' }}
         </button>
         |
-        <button (click)="onRemove()">
+        <button (click)="onRemove()" [disabled]="disableBtn">
           Remove
         </button>
         <br><br>
@@ -44,6 +44,8 @@ import { Passenger } from "../../models/passenger.interface";
   `
 })
 export class PassengerDetailComponent {
+
+  disableBtn: boolean = false;
 
   @Input() // defines an input property. recieves data from father container
   detail: Passenger;
@@ -62,8 +64,9 @@ export class PassengerDetailComponent {
   }
 
   toggleEdit() {
+    this.disableBtn = true;
     if(this.editing){
-      this.edit.emit(this.detail);
+      this.edit.emit(this.detail); //
     }
     this.editing = !this.editing;
   }
