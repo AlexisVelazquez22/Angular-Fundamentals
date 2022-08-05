@@ -5,7 +5,7 @@ import { Passenger } from "../../models/passenger.interface";
   selector: 'passenger-detail',
   styleUrls: ['passenger-detail.component.scss'],
   template: `
-    <div>
+    <div class="card">
         <span
           class="status"
           [ngClass]=" {
@@ -39,7 +39,7 @@ import { Passenger } from "../../models/passenger.interface";
         <button (click)="onRemove()" [disabled]="disableBtn">
           Remove
         </button>
-        <br><br>
+
     </div>
   `
 })
