@@ -8,7 +8,7 @@ import { Passenger } from "../../models/passenger.interface";
     <div>
       <h3>Airline Passengers</h3>
       <div>
-        Total passengers: {{ items.length }}
+        Total passengers: {{ items?.length }}
       </div>
       <div>
         Total checked in: {{ checkedInCount() }}/{{ items?.length }} <!-- wait until property is aviable using ? operator -->
