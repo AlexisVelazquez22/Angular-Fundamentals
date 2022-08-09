@@ -25,7 +25,7 @@ import { Passenger } from "../../models/passenger.interface";
         <div class="date">
           Check-in date:
             {{ detail.checkedIn === true
-              ? (detail.checkInDate | date: 'fullDate' | uppercase)
+              ? (detail.checkinDate | date: 'fullDate' | uppercase)
               : 'Not checked yet'
             }}
         </div>
