@@ -1,0 +1,21 @@
+.status {
+  width: 10px;
+  height: 10px;
+  display: block;
+  margin: 8px 10px 0 0;
+  float: left;
+  border-radius: 50%;
+  &.checked-in {
+    background: #2ecc71;
+  }
+  &.checked-out {
+    background: red;
+  }
+}
+
+.card{
+  border: 1px solid #1817171c;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
