@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Passenger } from 'src/app/passenger-dashboard/models/passenger.interface';
 import { PassengerDashboardService } from '../../services/passenger-dashboard.service';
+import { PassengerResponse } from '../../response/passenger-response.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'passenger-dashboard',
@@ -18,8 +20,8 @@ import { PassengerDashboardService } from '../../services/passenger-dashboard.se
       <passenger-detail
         *ngFor="let passenger of passengers;"
         [detail]="passenger"
-        (remove)="handleRemove($event)"
-        (edit)="handleEdit($event)">
+        (remove)="removePassenger($event, 'deleted')"
+        (edit)="editPassenger($event)">
       </passenger-detail>
 
     </div>
@@ -34,25 +36,47 @@ export class PassengerDashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-      this.passengerService.getPassengers().subscribe( response => {
-        this.passengers = response;
-        console.log(this.passengers);
-      });
+    this.deployList();
   }
 
-  handleRemove(event: Passenger) {
-    this.passengers = this.passengers.filter((passenger: Passenger) => {
-      return passenger.idPassenger !== event.idPassenger
+  deployList(): void {
+    this.passengerService.getPassengers().subscribe( response => {
+      this.passengers = response;
+      console.log(this.passengers);
     });
   }
 
-  handleEdit(event: Passenger) {
-    this.passengers = this.passengers.map((passenger: Passenger) => {
-      if(passenger.idPassenger === event.idPassenger){
-        passenger = Object.assign({}, passenger, event);
-      }
-      return passenger;
+  removePassenger(event: Passenger, action: string) {
+    this.passengerService.deletePassenger(event.idPassenger).subscribe( () => {
+      this.showAlert(action);
+      this.deployList();
     });
   }
+
+  editPassenger(event: Passenger) {
+
+    let passengerResponse: PassengerResponse = {
+                                                fullname: event.fullname,
+                                                checkedIn: event.checkedIn,
+                                                checkinDate: event.checkinDate
+                                               };
+
+    console.log(passengerResponse);
+    this.passengerService.putPassenger(passengerResponse, event.idPassenger).subscribe( () => {
+      this.showAlert('modified');
+      this.deployList();
+    });
+  }
+
+  showAlert(action: string): void {
+    Swal.fire({
+      icon: 'success',
+      title: "Done",
+      text: `The passenger has been ${action}`,
+      showConfirmButton: false,
+      timer: 2500
+    });
+  }
+
 
 }

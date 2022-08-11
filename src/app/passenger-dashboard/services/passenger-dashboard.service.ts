@@ -2,10 +2,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Passenger } from '../models/passenger.interface';
 import { Observable } from 'rxjs';
+import { PassengerResponse } from '../response/passenger-response.interface';
 
 const options = {
   headers: new HttpHeaders({
-    'Content-type': 'applications/json'
+    'Content-Type': 'application/json'
   }),
   responseType: 'text' as 'json'
 };
@@ -25,12 +26,12 @@ export class PassengerDashboardService {
     return this._http.get<Passenger[]>(`${this.url}/all`);
   }
 
-  postPassenger(passenger: Passenger): Observable<Passenger> {
-    return this._http.post<Passenger>(`${this.url}`, passenger, options);
+  postPassenger(passenger: Passenger): Observable<Response> {
+    return this._http.post<Response>(`${this.url}`, passenger, options);
   }
 
-  putPassenger(passenger: Passenger, id: number): Observable<Passenger> {
-    return this._http.put<Passenger>(`${this.url}/${id}`, passenger, options);
+  putPassenger(passenger: PassengerResponse, id: number): Observable<Response> {
+    return this._http.put<Response>(`${this.url}/${id}`, passenger, options);
   }
 
   deletePassenger(id: number): Observable<Response> {

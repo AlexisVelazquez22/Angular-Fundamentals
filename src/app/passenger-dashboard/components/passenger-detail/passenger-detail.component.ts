@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from "@angular/core";
 import { Passenger } from "../../models/passenger.interface";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'passenger-detail',
@@ -46,8 +47,9 @@ import { Passenger } from "../../models/passenger.interface";
 export class PassengerDetailComponent implements OnChanges {
 
   disableBtn: boolean = false;
+  currentName: string;
 
-  @Input() // defines an input property. recieves data from father container
+  @Input()
   detail: Passenger;
   editing: boolean = false;
 
@@ -66,19 +68,40 @@ export class PassengerDetailComponent implements OnChanges {
   }
 
   onNameChange(name: string) {
-    this.detail.fullname = name;
+    this.currentName = name;
   }
 
   toggleEdit() {
     this.disableBtn = true;
     if(this.editing){
-      this.edit.emit(this.detail); //
+      this.showAlert('modified').then((result) => {
+        if(result.isConfirmed) {
+          this.detail.fullname = this.currentName;
+          this.edit.emit(this.detail);
+        }
+      });
     }
     this.editing = !this.editing;
   }
 
   onRemove() {
-    this.remove.emit(this.detail); //return to the father the same type recieved (@Input)
+    this.showAlert('deleted').then((result) => {
+      if (result.isConfirmed) {
+        this.remove.emit(this.detail);
+      }
+    });
+  }
+
+  showAlert(action: string): Promise<any> {
+    return Swal.fire({
+      title: 'Are you sure?',
+      text: `This passenger will be ${action} permanently`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#9f72e6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Accept'
+    });
   }
 
 }
