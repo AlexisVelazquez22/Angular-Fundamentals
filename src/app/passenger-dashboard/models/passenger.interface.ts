@@ -4,6 +4,6 @@ export interface Passenger {
   idPassenger: number;
   fullname: string;
   checkedIn: boolean;
-  checkinDate: number | null;
+  checkinDate: string | null;
   children: Child[] | null;
 }
