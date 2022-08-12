@@ -12,6 +12,7 @@ import { PassengerDashboardModule } from "./passenger-dashboard/passenger-dashbo
 
 // components
 import { AppComponent } from "./app.component";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AppComponent } from "./app.component";
     CommonModule,
     AppRoutingModule,
     FormsModule,
-    PassengerDashboardModule
+    PassengerDashboardModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [ AppComponent ],
