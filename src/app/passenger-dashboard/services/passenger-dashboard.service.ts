@@ -26,8 +26,8 @@ export class PassengerDashboardService {
     return this._http.get<Passenger[]>(`${this.url}/all`);
   }
 
-  postPassenger(passenger: Passenger): Observable<Response> {
-    return this._http.post<Response>(`${this.url}`, passenger, options);
+  postPassenger(passenger: PassengerResponse): Observable<Response> {
+    return this._http.post<Response>(this.url, passenger, options);
   }
 
   putPassenger(passenger: PassengerResponse, id: number): Observable<Response> {
