@@ -3,18 +3,21 @@ import { Passenger } from 'src/app/passenger-dashboard/models/passenger.interfac
 import { PassengerDashboardService } from '../../services/passenger-dashboard.service';
 import { PassengerResponse } from '../../response/passenger-response.interface';
 import Swal from 'sweetalert2';
+import { MatDialog } from "@angular/material/dialog";
+import { PassengerDialog } from '../passenger-dialog/passenger-dialog.component';
 
 @Component({
   selector: 'passenger-dashboard',
   styleUrls: ['passenger-dashboard.component.scss'],
   template: `
     <div>
-      <passenger-count
-        [items]="passengers"> <!-- sends the data (passenger[]) to the dumb component -->
-      </passenger-count>
+      <h3>Airline Passengers</h3>
 
-      <div *ngFor="let passenger of passengers;">
-        {{ passenger.fullname }}
+      <div class="passengers">
+        <passenger-count
+          [items]="passengers">
+        </passenger-count>
+        <button (click)="openForm()">+ New Passenger</button>
       </div>
 
       <passenger-detail
@@ -32,7 +35,8 @@ export class PassengerDashboardComponent implements OnInit {
   passengers: Passenger[];
 
   constructor(
-    private passengerService: PassengerDashboardService
+    private passengerService: PassengerDashboardService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -78,5 +82,13 @@ export class PassengerDashboardComponent implements OnInit {
     });
   }
 
+  openForm() {
+    const dialogOptions = this.dialog.open(PassengerDialog);
+
+    dialogOptions.updateSize('245px', '275px');
+    dialogOptions.afterClosed().subscribe( () => {
+      this.deployList();
+    });
+  }
 
 }
